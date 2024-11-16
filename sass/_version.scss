@@ -1,3 +1,4 @@
+@use "sass:map";
 // Release Management in Susy
 // ==========================
 
@@ -44,10 +45,10 @@ $_susy-version: (
 @function susy-version(
   $part: null
 ) {
-  $major: map-get($_susy-version, 'major');
-  $minor: map-get($_susy-version, 'minor');
-  $patch: map-get($_susy-version, 'patch');
+  $major: map.get($_susy-version, 'major');
+  $minor: map.get($_susy-version, 'minor');
+  $patch: map.get($_susy-version, 'patch');
   $full: '#{$major}.#{$minor}.#{$patch}';
 
-  @return map-get($_susy-version, $part) or $full;
+  @return map.get($_susy-version, $part) or $full;
 }

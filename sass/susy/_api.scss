@@ -1,3 +1,8 @@
+@use "sass:map";
+@use "sass:meta";
+@use "syntax-helpers";
+@use "utilities";
+
 /// Susy3 API Functions
 /// ===================
 /// These three functions form the core of Susy's
@@ -140,14 +145,14 @@
   $span,
   $config: ()
 ) {
-  $output: susy-compile($span, $config);
+  $output: syntax-helpers.susy-compile($span, $config);
 
-  @if map-get($output, 'span') {
-    @return su-call('su-span', $output);
+  @if map.get($output, 'span') {
+    @return syntax-helpers.su-call('su-span', $output);
   }
 
-  $actual: '[#{type-of($span)}] `#{inspect($span)}`';
-  @return _susy-error(
+  $actual: '[#{meta.type-of($span)}] `#{meta.inspect($span)}`';
+  @return utilities.susy-error(
     'Unable to determine span value from #{$actual}.',
     'susy-span');
 }
@@ -200,9 +205,9 @@
   $context: null,
   $config: ()
 ) {
-  $context: susy-compile($context, $config, 'context-only');
+  $context: syntax-helpers.susy-compile($context, $config, 'context-only');
 
-  @return su-call('su-gutter', $context);
+  @return syntax-helpers.su-call('su-gutter', $context);
 }
 
 
@@ -250,9 +255,9 @@
   $span,
   $config: ()
 ) {
-  $span: susy-compile($span, $config);
+  $span: syntax-helpers.susy-compile($span, $config);
 
-  @return su-call('su-slice', $span);
+  @return syntax-helpers.su-call('su-slice', $span);
 }
 
 

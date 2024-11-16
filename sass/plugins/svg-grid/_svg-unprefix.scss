@@ -1,3 +1,5 @@
+@use "svg-api";
+
 // Unprefix Susy SVG Grid
 // ======================
 
@@ -14,5 +16,5 @@
   $colors: susy-get('svg-grid-colors'),
   $offset: null
 ) {
-  @return susy-svg-grid($grid, $colors, $offset);
+  @return svg-api.susy-svg-grid($grid, $colors, $offset);
 }

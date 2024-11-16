@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "sass:meta";
 // SVG Grid Math
 // =============
 
@@ -18,7 +20,7 @@
 /// @return {Length} -
 ///   Horizontal position of svg column rectangle,
 ///   as distance from the grid edge
-@function _susy-svg-column-position(
+@function susy-svg-column-position(
   $column,
   $grid
 ) {
@@ -46,12 +48,12 @@
 /// @return {Length | null} -
 ///   Expected distance from container edge to first column,
 ///   based on spread values and gutter-widths
-@function _susy-svg-offset(
+@function susy-svg-offset(
   $grid
 ) {
-  $columns: su-valid-columns(map-get($grid, 'columns'));
-  $gutters: su-valid-gutters(map-get($grid, 'gutters'));
-  $container: su-valid-spread(map-get($grid, 'container-spread')) + 1;
+  $columns: su-valid-columns(map.get($grid, 'columns'));
+  $gutters: su-valid-gutters(map.get($grid, 'gutters'));
+  $container: su-valid-spread(map.get($grid, 'container-spread')) + 1;
 
   @if ($container == 0) {
     @return null;
@@ -59,7 +61,7 @@
 
   $gutter: su-call('su-gutter', $grid);
 
-  @if (type-of($gutter) == 'string') {
+  @if (meta.type-of($gutter) == 'string') {
     @return 'calc(#{$container} * #{$gutter} / 2)';
   }
 
